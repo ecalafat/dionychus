@@ -8,5 +8,6 @@ public class HelloDionychus {
 		System.out.println("MERDE");
 		System.out.println("Bonjour tout le monde");
 		System.out.println("MERDE à la crème");
+		System.out.println("test conflit");
 	}
 }
