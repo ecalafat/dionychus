@@ -3,7 +3,6 @@ package fr.afcepf.al29.test;
 public class HelloDionychus {
 	public static void main(String[] args) {
 		System.out.println("Hello Dionychus");
-		System.out.println("D�dicace de ChienDesBois");
 		System.out.println("Change ton putain d'encodage sale chienDesBois");
 		System.out.println("MERDE");
 		System.out.println("Bonjour tout le monde");
