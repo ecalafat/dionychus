@@ -2,7 +2,7 @@ package fr.afcepf.al29.dionychus.entity;
 
 import java.util.List;
 
-public class Acteur {
+public abstract class Acteur {
 	private Integer idActeur;
 	private String nom;
 	private String prenom;

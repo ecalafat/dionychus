@@ -1,32 +1,19 @@
 package fr.afcepf.al29.dionychus.entity;
 
 import java.sql.Date;
-import java.util.List;
 
 public class CommandeClient extends Commande {
 	private Date dateCreation;
 	private Utilisateur utilisateur;
-	private List<Promotion> promotions;
+	private Promotion promotion;
 	public CommandeClient() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public CommandeClient(Integer idCommande, Date dateValidation, String numeroReference,
-			StatutCommande statutCommande, List<LigneCommande> lignesCommande) {
-		super(idCommande, dateValidation, numeroReference, statutCommande, lignesCommande);
-		// TODO Auto-generated constructor stub
-	}
-	public CommandeClient(Date dateCreation, Utilisateur utilisateur) {
+	public CommandeClient(Date dateCreation, Utilisateur utilisateur, Promotion promotion) {
 		super();
 		this.dateCreation = dateCreation;
 		this.utilisateur = utilisateur;
-	}
-	
-	public List<Promotion> getPromotions() {
-		return promotions;
-	}
-	public void setPromotions(List<Promotion> promotions) {
-		this.promotions = promotions;
+		this.promotion = promotion;
 	}
 	public Date getDateCreation() {
 		return dateCreation;
@@ -40,15 +27,23 @@ public class CommandeClient extends Commande {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+	public Promotion getPromotion() {
+		return promotion;
+	}
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
 	@Override
 	public String toString() {
-		return "CommandeClient [dateCreation=" + dateCreation + ", utilisateur=" + utilisateur + "]";
+		return "CommandeClient [dateCreation=" + dateCreation + ", utilisateur=" + utilisateur + ", promotion="
+				+ promotion + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
+		result = prime * result + ((promotion == null) ? 0 : promotion.hashCode());
 		result = prime * result + ((utilisateur == null) ? 0 : utilisateur.hashCode());
 		return result;
 	}
@@ -66,6 +61,11 @@ public class CommandeClient extends Commande {
 				return false;
 		} else if (!dateCreation.equals(other.dateCreation))
 			return false;
+		if (promotion == null) {
+			if (other.promotion != null)
+				return false;
+		} else if (!promotion.equals(other.promotion))
+			return false;
 		if (utilisateur == null) {
 			if (other.utilisateur != null)
 				return false;
@@ -73,5 +73,6 @@ public class CommandeClient extends Commande {
 			return false;
 		return true;
 	}
+	
 	
 }
