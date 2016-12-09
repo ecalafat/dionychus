@@ -16,7 +16,7 @@ public class Utilisateur extends Acteur {
 		// TODO Auto-generated constructor stub
 	}
 	public Utilisateur(Integer idActeur, String nom, String prenom, String numeroTelephone, String adresseMail,
-			String civilite, List<Adresse> adresses) {
+			Civilite civilite, List<Adresse> adresses) {
 		super(idActeur, nom, prenom, numeroTelephone, adresseMail, civilite, adresses);
 		// TODO Auto-generated constructor stub
 	}
