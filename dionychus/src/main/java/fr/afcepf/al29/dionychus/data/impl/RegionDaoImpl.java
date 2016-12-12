@@ -24,9 +24,9 @@ public class RegionDaoImpl implements RegionDaoItf {
 	}
 
 	public void setDataSource(DataSource dataSource) {
-	      this.dataSource = dataSource;
-	      this.jdbcTemplate = new JdbcTemplate(dataSource);
-	   }
+		this.dataSource = dataSource;
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -38,7 +38,7 @@ public class RegionDaoImpl implements RegionDaoItf {
 
 	@Override
 	public List<Region> getAll() {
-		String SQL = "SELECT id_region, libelle FROM region";
+		String SQL = "SELECT id_region, libelle FROM region ORDER BY id_region";
 		System.out.println(SQL);
 		List<Region> regions = jdbcTemplate.query(SQL, new RegionMapper());
 		System.out.println(regions.isEmpty());
@@ -50,6 +50,12 @@ public class RegionDaoImpl implements RegionDaoItf {
 		String SQL = "SELECT id_region, libelle FROM region WHERE id_region = ?";
 		Region region = jdbcTemplate.queryForObject(SQL, new Object[] { idRegion }, new RegionMapper());
 		return region;
+	}
+
+	@Override
+	public void addRegion(Region region) {
+		String SQL = "INSERT INTO region (libelle) VALUES (?)";
+		jdbcTemplate.update(SQL, region.getLibelle());
 	}
 
 }
