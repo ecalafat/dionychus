@@ -8,7 +8,7 @@
    <bean id="dataSource" 
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-      <property name="url" value="jdbc:mysql://localhost:3306/bdd_dionychus"/>
+      <property name="url" value="jdbc:mysql://localhost:3306/bdd_dionychus?useSSL=false"/>
       <property name="username" value="root"/>
       <property name="password" value="root"/>
    </bean>
@@ -18,5 +18,68 @@
       class="fr.afcepf.al29.dionychus.data.impl.RegionDaoImpl">
       <property name="dataSource"  ref="dataSource" />    
    </bean>
+   
+   <!-- Definition for CepageDaoImpl bean -->
+   <bean id="cepageJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.CepageDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for AppelationDaoImpl bean -->
+   <bean id="appelationJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.AppelationDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for AromeDaoImpl bean -->
+   <bean id="aromeJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.AromeDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for PaysDaoImpl bean -->
+   <bean id="paysJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.PaysDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for TypeAccesDaoImpl bean -->
+   <bean id="typeAccesJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.TypeAccesDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for TypeAccessoireDaoImpl bean -->
+   <bean id="typeAccessoireJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.TypeAccessoireDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
+   <!-- Definition for TypeLivraisonDaoImpl bean -->
+   <bean id="typeLivraisonJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.TypeLivraisonDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+    <!-- Definition for TypeVinDaoImpl bean -->
+   <bean id="typeVinJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.TypeVinDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   <!-- Definition for StatutCommandeDaoImpl bean -->
+   <bean id="statutCommandeJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.StatutCommandeDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   <!-- Definition for AccessoireCommandeDaoImpl bean -->
+   <bean id="accessoireJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.AccessoireDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   <!-- Definition for AdresseCommandeDaoImpl bean -->
+   <bean id="adresseJDBCtemplate" 
+      class="fr.afcepf.al29.dionychus.data.impl.AdresseDaoImpl">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   
       
 </beans>

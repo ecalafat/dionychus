@@ -16,7 +16,6 @@ public class RegionDaoImpl implements RegionDaoItf {
 
 	public RegionDaoImpl() {
 		super();
-		System.out.println("Constructeur regionDao");
 	}
 
 	public DataSource getDataSource() {
@@ -38,16 +37,14 @@ public class RegionDaoImpl implements RegionDaoItf {
 
 	@Override
 	public List<Region> getAll() {
-		String SQL = "SELECT id_region, libelle FROM region ORDER BY id_region";
-		System.out.println(SQL);
+		String SQL = "SELECT id_region, libelle FROM region ORDER BY libelle";
 		List<Region> regions = jdbcTemplate.query(SQL, new RegionMapper());
-		System.out.println(regions.isEmpty());
 		return regions;
 	}
 
 	@Override
 	public Region getRegionById(Integer idRegion) {
-		String SQL = "SELECT id_region, libelle FROM region WHERE id_region = ?";
+		String SQL = "SELECT id_region, libelle FROM region WHERE id_region = ? ORDER BY libelle";
 		Region region = jdbcTemplate.queryForObject(SQL, new Object[] { idRegion }, new RegionMapper());
 		return region;
 	}
