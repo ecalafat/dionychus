@@ -1,7 +1,6 @@
 package fr.afcepf.al29.dionychus.test;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -19,6 +18,7 @@ import fr.afcepf.al29.dionychus.data.itf.FournisseurDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.LigneCommandeDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.LivraisonDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.PaysDaoItf;
+import fr.afcepf.al29.dionychus.data.itf.PromotionDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.RegionDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.StatutCommandeDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.TypeAccesDaoItf;
@@ -27,11 +27,11 @@ import fr.afcepf.al29.dionychus.data.itf.TypeLivraisonDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.TypeVinDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.UtilisateurDaoItf;
 import fr.afcepf.al29.dionychus.data.itf.VilleDaoItf;
+import fr.afcepf.al29.dionychus.data.itf.VinDaoItf;
 import fr.afcepf.al29.dionychus.entity.Accessoire;
 import fr.afcepf.al29.dionychus.entity.Adresse;
 import fr.afcepf.al29.dionychus.entity.Appelation;
 import fr.afcepf.al29.dionychus.entity.Arome;
-import fr.afcepf.al29.dionychus.entity.Article;
 import fr.afcepf.al29.dionychus.entity.Cepage;
 import fr.afcepf.al29.dionychus.entity.CommandeClient;
 import fr.afcepf.al29.dionychus.entity.CommandeStock;
@@ -76,6 +76,8 @@ public class MainApp {
 		FournisseurDaoItf fDao = (FournisseurDaoItf) context.getBean("fournisseurJDBCtemplate");
 		LigneCommandeDaoItf lcDao = (LigneCommandeDaoItf) context.getBean("ligneCommandeJDBCtemplate");
 		LivraisonDaoItf livDao = (LivraisonDaoItf) context.getBean("livraisonJDBCtemplate");
+		VinDaoItf vinDao = (VinDaoItf) context.getBean("vinJDBCtemplate");
+		PromotionDaoItf promDao = (PromotionDaoItf) context.getBean("promotionJDBCtemplate");
 		System.out.println("Test Spring JDBC");
 
 		List<Region> regions = rDao.getAll();
@@ -145,7 +147,7 @@ public class MainApp {
 			System.out.println("Description : " + accessoire.getDescription());
 			System.out.println(accessoire.getTypeAccessoire().getLibelle());
 		}
-		System.out.println("Requête by ID : " + (acDao.getById(1)).getLibelle());
+//		System.out.println("Requête by ID : " + (acDao.getById(1)).getLibelle());
 
 		List<Adresse> adresses = adDao.getAll();
 		System.out.println("Liste des adresses");
@@ -194,14 +196,14 @@ public class MainApp {
 			System.out.println(commandeClient.getNumeroReference() + " " + commandeClient.getIdCommande());
 		}
 
-		StatutCommande statutCommandeTest = new StatutCommande(1, "panier");
-		Utilisateur utilisateurCommandeClient = new Utilisateur();
-		utilisateurCommandeClient.setIdActeur(3);
-		List<LigneCommande> lignesCommandes = new ArrayList<>();
-		Promotion promotionCommandeClient = new Promotion();
-		promotionCommandeClient.setIdPromotion(1);
-		CommandeClient commandeClient = new CommandeClient(null, new Date(0), "oifzhorzrrgf", statutCommandeTest,
-				lignesCommandes, new Date(0), utilisateurCommandeClient, promotionCommandeClient);
+//		StatutCommande statutCommandeTest = new StatutCommande(1, "panier");
+//		Utilisateur utilisateurCommandeClient = new Utilisateur();
+//		utilisateurCommandeClient.setIdActeur(3);
+//		List<LigneCommande> lignesCommandes = new ArrayList<>();
+//		Promotion promotionCommandeClient = new Promotion();
+//		promotionCommandeClient.setIdPromotion(1);
+//		CommandeClient commandeClient = new CommandeClient(null, new Date(0), "oifzhorzrrgf", statutCommandeTest,
+//				lignesCommandes, new Date(0), utilisateurCommandeClient, promotionCommandeClient);
 
 		// ccDao.addCommandeClient(commandeClient);
 		// commandeClient.setIdCommande(9);
@@ -283,14 +285,45 @@ public class MainApp {
 		CommandeClient commandeClientTest = new CommandeClient(new Date(0), utilisateurTestLivraison, null);
 		commandeClientTest.setIdCommande(1);
 		Livraison livraisonTest = new Livraison(null, 50.50,typeLivraisonTest, commandeClientTest);
-		livDao.addLivraison(livraisonTest);
+//		livDao.addLivraison(livraisonTest);
 		livraisonTest.setTarification(70.50);
 		livraisonTest.setIdLivraison(4);
-		livDao.updateLivraison(livraisonTest);
+//		livDao.updateLivraison(livraisonTest);
 		List<Livraison> livraisons = livDao.getAll();
 		for (Livraison livraison : livraisons) {
 			System.out.println(livraison);
 		}
+		
+		System.out.println("Liste des vins");
+		List<Vin> vins = vinDao.getAll();
+		for (Vin vin : vins) {
+			System.out.println(vin);
+		}
+		System.out.println("Aromes du vin 1");
+		List<Arome> aromeDuVin1 = arDao.getAromeByIdVin(1);
+		for (Arome arome : aromeDuVin1) {
+			System.out.println(arome);
+		}
+		System.out.println("Cepages du vin 1");
+		List<Cepage> cepageDuVin1 = cDao.getCepageByIdVin(1);
+		for (Cepage cepage : cepageDuVin1) {
+			System.out.println(cepage);
+		}
+		
+		System.out.println("Liste des promotions");
+//		Promotion promotionTest = new Promotion(null, "nouvellePromo", new Date(0), new Date(0), 6.5, 200.0);
+//		promDao.addPromotion(promotionTest);
+//		promotionTest.setIdPromotion(5);
+//		promotionTest.setLibelle("libelleUpdate");
+//		promDao.updatePromotion(promotionTest);
+		promDao.deletePromotion(4);
+		promDao.deletePromotion(1);
+		
+		List<Promotion> promotions = promDao.getAll();
+		for (Promotion promotion : promotions) {
+			System.out.println(promotion);
+		}
+		
 
 		System.out.println("Fin test JDBC");
 
